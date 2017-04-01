@@ -7,27 +7,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var crisis_list_component_1 = require("./crisis-list.component");
-var not_found_component_1 = require("./not-found.component");
-var appRoutes = [
-    { path: 'crisis-center', component: crisis_list_component_1.CrisisListComponent },
-    { path: '', redirectTo: '/heroes', pathMatch: 'full' },
-    { path: '**', component: not_found_component_1.PageNotFoundComponent }
+var hero_list_component_1 = require("./hero-list.component");
+var hero_detail_component_1 = require("./hero-detail.component");
+var heroesRoutes = [
+    { path: 'heroes', component: hero_list_component_1.HeroListComponent },
+    { path: 'hero/:id', component: hero_detail_component_1.HeroDetailComponent }
 ];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var HeroRoutingModule = (function () {
+    function HeroRoutingModule() {
     }
-    return AppRoutingModule;
+    return HeroRoutingModule;
 }());
-AppRoutingModule = __decorate([
+HeroRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot(appRoutes)
+            router_1.RouterModule.forChild(heroesRoutes)
         ],
         exports: [
             router_1.RouterModule
         ]
     })
-], AppRoutingModule);
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+], HeroRoutingModule);
+exports.HeroRoutingModule = HeroRoutingModule;
+//# sourceMappingURL=heroes-routing.module.js.map
