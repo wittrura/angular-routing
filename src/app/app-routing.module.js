@@ -6,33 +6,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var forms_1 = require("@angular/forms");
-var app_routing_module_1 = require("./app-routing.module");
-var app_component_1 = require("./app.component");
+var router_1 = require("@angular/router");
 var crisis_list_component_1 = require("./crisis-list.component");
 var hero_list_component_1 = require("./hero-list.component");
 var not_found_component_1 = require("./not-found.component");
-var AppModule = (function () {
-    function AppModule() {
+var appRoutes = [
+    { path: 'crisis-center', component: crisis_list_component_1.CrisisListComponent },
+    { path: 'heroes', component: hero_list_component_1.HeroListComponent },
+    { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+    { path: '**', component: not_found_component_1.PageNotFoundComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    return AppModule;
+    return AppRoutingModule;
 }());
-AppModule = __decorate([
+AppRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            app_routing_module_1.AppRoutingModule
+            router_1.RouterModule.forRoot(appRoutes)
         ],
-        declarations: [
-            app_component_1.AppComponent,
-            hero_list_component_1.HeroListComponent,
-            crisis_list_component_1.CrisisListComponent,
-            not_found_component_1.PageNotFoundComponent
-        ],
-        bootstrap: [app_component_1.AppComponent]
+        exports: [
+            router_1.RouterModule
+        ]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map
