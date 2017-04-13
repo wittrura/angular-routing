@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
@@ -8,7 +11,8 @@ import { HeroService } from './hero.service';
   template: `
     <h2>HEROES</h2>
     <ul class="heroes">
-      <li *ngFor="let hero of heroes"
+      <li *ngFor="let hero of heroes | async"
+        [class.selected]="isSelected(hero)"
         (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
@@ -68,24 +72,35 @@ import { HeroService } from './hero.service';
 })
 export class HeroListComponent implements OnInit {
   title = 'Tour of Heroes';
-  heroes: Hero[];
+  heroes: Observable<Hero[]>;
   selectedHero: Hero;
+  private selectedId: number;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private heroService: HeroService
+    private service: HeroService
   ) { }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
+  // getHeroes(): void {
+  //   this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  // }
 
   ngOnInit(): void {
-    this.getHeroes();
+    // this.getHeroes();
+    this.heroes = this.route.params
+      .switchMap((params: Params) => {
+        this.selectedId = +params['id'];
+        return this.service.getHeroes();
+      });
   }
 
   onSelect(hero: Hero): void {
     this.router.navigate(['/hero', hero.id]);
+  }
+
+  isSelected(hero: Hero) {
+    return hero.id === this.selectedId;
   }
 }
 

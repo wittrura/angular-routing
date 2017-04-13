@@ -10,43 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-require("rxjs/add/operator/switchMap");
 var hero_service_1 = require("./hero.service");
 var HeroListComponent = (function () {
-    function HeroListComponent(route, router, service) {
-        this.route = route;
+    function HeroListComponent(router, heroService) {
         this.router = router;
-        this.service = service;
+        this.heroService = heroService;
         this.title = 'Tour of Heroes';
     }
-    // getHeroes(): void {
-    //   this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-    // }
-    HeroListComponent.prototype.ngOnInit = function () {
+    HeroListComponent.prototype.getHeroes = function () {
         var _this = this;
-        // this.getHeroes();
-        this.heroes = this.route.params
-            .switchMap(function (params) {
-            _this.selectedId = +params['id'];
-            return _this.service.getHeroes();
-        });
+        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+    };
+    HeroListComponent.prototype.ngOnInit = function () {
+        this.getHeroes();
     };
     HeroListComponent.prototype.onSelect = function (hero) {
         this.router.navigate(['/hero', hero.id]);
-    };
-    HeroListComponent.prototype.isSelected = function (hero) {
-        return hero.id === this.selectedId;
     };
     return HeroListComponent;
 }());
 HeroListComponent = __decorate([
     core_1.Component({
-        template: "\n    <h2>HEROES</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let hero of heroes | async\"\n        [class.selected]=\"isSelected(hero)\"\n        (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n    <button routerLink=\"/sidekicks\">Go to sidekicks</button>\n  ",
+        template: "\n    <h2>HEROES</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let hero of heroes\"\n        (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n    <button routerLink=\"/sidekicks\">Go to sidekicks</button>\n  ",
         styles: ["\n    .selected {\n      background-color: #CFD8DC !important;\n      color: white;\n    }\n    .heroes {\n      margin: 0 0 2em 0;\n      list-style-type: none;\n      padding: 0;\n      width: 15em;\n    }\n    .heroes li {\n      cursor: pointer;\n      position: relative;\n      left: 0;\n      background-color: #EEE;\n      margin: .5em;\n      padding: .3em 0;\n      height: 1.6em;\n      border-radius: 4px;\n    }\n    .heroes li.selected:hover {\n      background-color: #BBD8DC !important;\n      color: white;\n    }\n    .heroes li:hover {\n      color: #607D8B;\n      background-color: #DDD;\n      left: .1em;\n    }\n    .heroes .text {\n      position: relative;\n      top: -3px;\n    }\n    .heroes .badge {\n      display: inline-block;\n      font-size: small;\n      color: white;\n      padding: 0.8em 0.7em 0 0.7em;\n      background-color: #607D8B;\n      line-height: 1em;\n      position: relative;\n      left: -1px;\n      top: -4px;\n      height: 1.8em;\n      margin-right: .8em;\n      border-radius: 4px 0 0 4px;\n    }\n  "],
         providers: [hero_service_1.HeroService]
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute,
-        router_1.Router,
+    __metadata("design:paramtypes", [router_1.Router,
         hero_service_1.HeroService])
 ], HeroListComponent);
 exports.HeroListComponent = HeroListComponent;

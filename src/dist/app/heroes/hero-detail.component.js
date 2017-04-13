@@ -26,12 +26,7 @@ var HeroDetailComponent = (function () {
             .subscribe(function (hero) { return _this.hero = hero; });
     };
     HeroDetailComponent.prototype.gotoHeroes = function () {
-        // this.router.navigate(['/heroes']);
-        var heroId = this.hero ? this.hero.id : null;
-        // Pass along the hero id if available
-        // so that the HeroList component can select that hero.
-        // Include a junk 'foo' property for fun.
-        this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
+        this.router.navigate(['/heroes']);
     };
     return HeroDetailComponent;
 }());

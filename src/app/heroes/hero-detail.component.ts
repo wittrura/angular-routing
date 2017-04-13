@@ -39,7 +39,12 @@ export class HeroDetailComponent {
   }
 
   gotoHeroes() {
-    this.router.navigate(['/heroes']);
+    // this.router.navigate(['/heroes']);
+    let heroId = this.hero ? this.hero.id : null;
+    // Pass along the hero id if available
+    // so that the HeroList component can select that hero.
+    // Include a junk 'foo' property for fun.
+    this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
   }
 }
 
