@@ -11,13 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 require("rxjs/add/operator/switchMap");
+var animations_1 = require("../animations");
 var hero_service_1 = require("./hero.service");
-var hero_1 = require("./hero");
 var HeroDetailComponent = (function () {
     function HeroDetailComponent(route, router, service) {
         this.route = route;
         this.router = router;
         this.service = service;
+        this.routeAnimation = true;
+        this.display = 'block';
+        this.position = 'absolute';
     }
     HeroDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -36,13 +39,22 @@ var HeroDetailComponent = (function () {
     return HeroDetailComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", hero_1.Hero)
-], HeroDetailComponent.prototype, "hero", void 0);
+    core_1.HostBinding('@routeAnimation'),
+    __metadata("design:type", Object)
+], HeroDetailComponent.prototype, "routeAnimation", void 0);
+__decorate([
+    core_1.HostBinding('style.display'),
+    __metadata("design:type", Object)
+], HeroDetailComponent.prototype, "display", void 0);
+__decorate([
+    core_1.HostBinding('style.position'),
+    __metadata("design:type", Object)
+], HeroDetailComponent.prototype, "position", void 0);
 HeroDetailComponent = __decorate([
     core_1.Component({
         selector: 'hero-detail',
-        template: "\n    <div *ngIf=\"hero\">\n      <h2>{{hero.name}} details!</h2>\n      <div>\n        <label>id: </label>{{hero.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"hero.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n    <button (click)=\"gotoHeroes()\">Heroes</button>\n  "
+        animations: [animations_1.slideInDownAnimation],
+        template: "\n    <div *ngIf=\"hero\">\n      <h2>{{hero.name}} details!</h2>\n      <div>\n        <label>id: </label>{{hero.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"hero.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n    <button (click)=\"gotoHeroes()\">Back</button>\n  "
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         router_1.Router,

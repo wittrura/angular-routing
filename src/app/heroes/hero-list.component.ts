@@ -71,9 +71,9 @@ import { HeroService } from './hero.service';
   providers: [HeroService]
 })
 export class HeroListComponent implements OnInit {
-  title = 'Tour of Heroes';
+  // title = 'Tour of Heroes';
   heroes: Observable<Hero[]>;
-  selectedHero: Hero;
+  // selectedHero: Hero;
   private selectedId: number;
 
   constructor(

@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+
+import { slideInDownAnimation } from '../animations';
 
 import { HeroService } from './hero.service';
 
@@ -9,6 +11,7 @@ import { Hero } from './hero';
 
 @Component({
   selector: 'hero-detail',
+  animations: [slideInDownAnimation],
   template: `
     <div *ngIf="hero">
       <h2>{{hero.name}} details!</h2>
@@ -20,11 +23,15 @@ import { Hero } from './hero';
         <input [(ngModel)]="hero.name" placeholder="name"/>
       </div>
     </div>
-    <button (click)="gotoHeroes()">Heroes</button>
+    <button (click)="gotoHeroes()">Back</button>
   `
 })
 export class HeroDetailComponent {
-  @Input() hero: Hero;
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display')   display = 'block';
+  @HostBinding('style.position')  position = 'absolute';
+
+  hero: Hero;
 
   constructor(
     private route: ActivatedRoute,

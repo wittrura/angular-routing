@@ -17,7 +17,6 @@ var HeroListComponent = (function () {
         this.route = route;
         this.router = router;
         this.service = service;
-        this.title = 'Tour of Heroes';
     }
     // getHeroes(): void {
     //   this.heroService.getHeroes().then(heroes => this.heroes = heroes);
