@@ -7,10 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var crisis_list_component_1 = require("./crisis-list.component");
 var not_found_component_1 = require("./not-found.component");
 var appRoutes = [
-    { path: 'crisis-center', component: crisis_list_component_1.CrisisListComponent },
     { path: '', redirectTo: '/heroes', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent }
 ];

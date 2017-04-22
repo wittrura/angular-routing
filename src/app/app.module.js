@@ -6,14 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var animations_1 = require("@angular/platform-browser/animations");
 var app_component_1 = require("./app.component");
+var not_found_component_1 = require("./not-found.component");
 var app_routing_module_1 = require("./app-routing.module");
 var heroes_module_1 = require("./heroes/heroes.module");
-var crisis_list_component_1 = require("./crisis-list.component");
-var not_found_component_1 = require("./not-found.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,6 +22,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
+            common_1.CommonModule,
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
@@ -30,7 +31,7 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            crisis_list_component_1.CrisisListComponent,
+            // CrisisListComponent,
             not_found_component_1.PageNotFoundComponent
         ],
         bootstrap: [app_component_1.AppComponent]

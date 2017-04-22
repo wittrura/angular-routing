@@ -7,13 +7,13 @@ import { CrisisDetailComponent }  from './crisis-detail.component';
 
 import { CrisisService } from './crisis.service';
 
-import { CrisisRoutingModule } from './crisis-routing.module';
+import { CrisisCenterRoutingModule } from './crisis-center-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    CrisisRoutingModule
+    CrisisCenterRoutingModule
   ],
   declarations: [
     CrisisListComponent,
@@ -21,4 +21,4 @@ import { CrisisRoutingModule } from './crisis-routing.module';
   ],
   providers: [ CrisisService ]
 })
-export class CrisesModule {}
+export class CrisisCenterModule {}

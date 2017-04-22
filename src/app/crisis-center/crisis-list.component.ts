@@ -9,15 +9,15 @@ import { CrisisService } from './crisis.service';
 
 @Component({
   template: `
-    <h2>CRISES</h2>
     <ul class="crises">
       <li *ngFor="let crisis of crises | async"
-        [class.selected]="isSelected(crisis)"
-        (click)="onSelect(crisis)">
-        <span class="badge">{{crisis.id}}</span> {{crisis.name}}
+        <a [routerLink] = "crisis.id"
+           [class.selected]="isSelected(crisis)">
+          <span class="badge">{{crisis.id}}</span>
+          {{crisis.name}}
+        </a>
       </li>
     </ul>
-    <button routerLink="/sidekicks">Go to sidekicks</button>
   `,
   styles: [`
     .selected {
@@ -96,7 +96,10 @@ export class CrisisListComponent implements OnInit {
   }
 
   onSelect(crisis: Crisis): void {
-    this.router.navigate(['/crisis', crisis.id]);
+    this.selectedId = crisis.id;
+
+    // Navigate with a relative link
+    this.router.navigate([crisis.id], { relativeTo: this.route });
   }
 
   isSelected(crisis: Crisis) {

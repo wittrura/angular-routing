@@ -46,12 +46,8 @@ export class CrisisDetailComponent {
     }
 
   gotoCrisises() {
-    // this.router.navigate(['/crises']);
     let crisisId = this.crisis ? this.crisis.id : null;
-    // Pass along the crisis id if available
-    // so that the CrisisList component can select that crisis.
-    // Include a junk 'foo' property for fun.
-    this.router.navigate(['/crises', { id: crisisId, foo: 'foo' }]);
+    this.router.navigate(['../', {id: crisisId, foo: 'foo'}, {relativeTo: this.route}]);
   }
 }
 

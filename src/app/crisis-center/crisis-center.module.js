@@ -11,18 +11,18 @@ var forms_1 = require("@angular/forms");
 var crisis_list_component_1 = require("./crisis-list.component");
 var crisis_detail_component_1 = require("./crisis-detail.component");
 var crisis_service_1 = require("./crisis.service");
-var crisis_routing_module_1 = require("./crisis-routing.module");
-var CrisesModule = (function () {
-    function CrisesModule() {
+var crisis_center_routing_module_1 = require("./crisis-center-routing.module");
+var CrisisCenterModule = (function () {
+    function CrisisCenterModule() {
     }
-    return CrisesModule;
+    return CrisisCenterModule;
 }());
-CrisesModule = __decorate([
+CrisisCenterModule = __decorate([
     core_1.NgModule({
         imports: [
             common_1.CommonModule,
             forms_1.FormsModule,
-            crisis_routing_module_1.CrisisRoutingModule
+            crisis_center_routing_module_1.CrisisCenterRoutingModule
         ],
         declarations: [
             crisis_list_component_1.CrisisListComponent,
@@ -30,6 +30,6 @@ CrisesModule = __decorate([
         ],
         providers: [crisis_service_1.CrisisService]
     })
-], CrisesModule);
-exports.CrisesModule = CrisesModule;
-//# sourceMappingURL=crises.module.js.map
+], CrisisCenterModule);
+exports.CrisisCenterModule = CrisisCenterModule;
+//# sourceMappingURL=crisis-center.module.js.map
