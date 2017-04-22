@@ -5,53 +5,53 @@ import 'rxjs/add/operator/switchMap';
 
 import { slideInDownAnimation } from '../animations';
 
-import { HeroService } from './hero.service';
+import { CrisisService } from './crisis.service';
 
-import { Hero } from './hero';
+import { Crisis } from './crisis';
 
 @Component({
-  selector: 'hero-detail',
+  selector: 'crisis-detail',
   animations: [slideInDownAnimation],
   template: `
-    <div *ngIf="hero">
-      <h2>{{hero.name}} details!</h2>
+    <div *ngIf="crisis">
+      <h2>{{crisis.name}} details!</h2>
       <div>
-        <label>id: </label>{{hero.id}}
+        <label>id: </label>{{crisis.id}}
       </div>
       <div>
         <label>name: </label>
-        <input [(ngModel)]="hero.name" placeholder="name"/>
+        <input [(ngModel)]="crisis.name" placeholder="name"/>
       </div>
     </div>
-    <button (click)="gotoHeroes()">Back</button>
+    <button (click)="gotoCrisises()">Back</button>
   `
 })
-export class HeroDetailComponent {
+export class CrisisDetailComponent {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
 
-  hero: Hero;
+  crisis: Crisis;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: HeroService
+    private service: CrisisService
   ) {}
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => this.service.getHero(+params['id']))
-      .subscribe((hero: Hero) => this.hero = hero);
+      .switchMap((params: Params) => this.service.getCrisis(+params['id']))
+      .subscribe((crisis: Crisis) => this.crisis = crisis);
     }
 
-  gotoHeroes() {
-    // this.router.navigate(['/heroes']);
-    let heroId = this.hero ? this.hero.id : null;
-    // Pass along the hero id if available
-    // so that the HeroList component can select that hero.
+  gotoCrisises() {
+    // this.router.navigate(['/crises']);
+    let crisisId = this.crisis ? this.crisis.id : null;
+    // Pass along the crisis id if available
+    // so that the CrisisList component can select that crisis.
     // Include a junk 'foo' property for fun.
-    this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
+    this.router.navigate(['/crises', { id: crisisId, foo: 'foo' }]);
   }
 }
 
