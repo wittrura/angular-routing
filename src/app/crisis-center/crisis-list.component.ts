@@ -10,7 +10,7 @@ import { CrisisService } from './crisis.service';
 @Component({
   template: `
     <ul class="crises">
-      <li *ngFor="let crisis of crises | async"
+      <li *ngFor="let crisis of crises | async">
         <a [routerLink] = "crisis.id"
            [class.selected]="isSelected(crisis)">
           <span class="badge">{{crisis.id}}</span>

@@ -14,6 +14,7 @@ var app_component_1 = require("./app.component");
 var not_found_component_1 = require("./not-found.component");
 var app_routing_module_1 = require("./app-routing.module");
 var heroes_module_1 = require("./heroes/heroes.module");
+var crisis_center_module_1 = require("./crisis-center/crisis-center.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,6 +28,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
             app_routing_module_1.AppRoutingModule,
+            crisis_center_module_1.CrisisCenterModule,
             animations_1.BrowserAnimationsModule
         ],
         declarations: [

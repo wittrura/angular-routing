@@ -6,34 +6,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var mock_crises_1 = require("./mock-crises");
+var Crisis = (function () {
+    function Crisis(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Crisis;
+}());
+exports.Crisis = Crisis;
+var CRISES = [
+    new Crisis(1, 'Dragon Burning Cities'),
+    new Crisis(2, 'Sky Rains Great White Sharks'),
+    new Crisis(3, 'Giant Asteroid Heading For Earth'),
+    new Crisis(4, 'Procrastinators Meeting Delayed Again'),
+];
+var crisesPromise = Promise.resolve(CRISES);
 var CrisisService = (function () {
     function CrisisService() {
     }
-    CrisisService.prototype.getCrises = function () {
-        return Promise.resolve(mock_crises_1.CRISES);
-    };
+    CrisisService.prototype.getCrises = function () { return crisesPromise; };
     CrisisService.prototype.getCrisis = function (id) {
-        return this.getCrises()
-            .then(function (crises) { return crises.find(function (crisis) { return crisis.id === id; }); });
-    };
-    // See the "Take it slow" appendix
-    CrisisService.prototype.getCrisesSlowly = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            // Simulate server latency with 2 second delay
-            setTimeout(function () { return resolve(_this.getCrises()); }, 2000);
-        });
+        return crisesPromise
+            .then(function (crises) { return crises.find(function (crisis) { return crisis.id === +id; }); });
     };
     return CrisisService;
 }());
+CrisisService.nextCrisisId = 100;
 CrisisService = __decorate([
     core_1.Injectable()
 ], CrisisService);
 exports.CrisisService = CrisisService;
-/*
-Copyright 2017 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
 //# sourceMappingURL=crisis.service.js.map

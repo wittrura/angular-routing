@@ -8,8 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
+var crisis_center_component_1 = require("./crisis-center.component");
 var crisis_list_component_1 = require("./crisis-list.component");
 var crisis_detail_component_1 = require("./crisis-detail.component");
+var crisis_center_home_component_1 = require("./crisis-center-home.component");
 var crisis_service_1 = require("./crisis.service");
 var crisis_center_routing_module_1 = require("./crisis-center-routing.module");
 var CrisisCenterModule = (function () {
@@ -26,7 +28,9 @@ CrisisCenterModule = __decorate([
         ],
         declarations: [
             crisis_list_component_1.CrisisListComponent,
-            crisis_detail_component_1.CrisisDetailComponent
+            crisis_detail_component_1.CrisisDetailComponent,
+            crisis_center_component_1.CrisisCenterComponent,
+            crisis_center_home_component_1.CrisisCenterHomeComponent
         ],
         providers: [crisis_service_1.CrisisService]
     })

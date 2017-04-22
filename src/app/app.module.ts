@@ -22,6 +22,7 @@ import { DialogService } from './dialog.service';
     FormsModule,
     HeroesModule,
     AppRoutingModule,
+    CrisisCenterModule,
     BrowserAnimationsModule
   ],
   declarations: [
