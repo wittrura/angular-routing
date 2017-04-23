@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { CrisisCenterModule } from './crisis-center/crisis-center.module';
+import { ComposeMessageComponent } from './compose-message.component';
 
 import { DialogService } from './dialog.service';
 
@@ -27,8 +28,8 @@ import { DialogService } from './dialog.service';
   ],
   declarations: [
     AppComponent,
-    // CrisisListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ComposeMessageComponent
   ],
   bootstrap: [ AppComponent ]
 })

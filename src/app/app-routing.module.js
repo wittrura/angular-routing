@@ -8,7 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var not_found_component_1 = require("./not-found.component");
+var compose_message_component_1 = require("./compose-message.component");
 var appRoutes = [
+    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
     { path: '', redirectTo: '/heroes', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent }
 ];

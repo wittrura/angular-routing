@@ -7,7 +7,7 @@ import { slideInDownAnimation } from '../animations';
 
 import { CrisisService } from './crisis.service';
 
-import { Crisis } from './crisis';
+import { Crisis } from './crisis.service';
 
 @Component({
   selector: 'crisis-detail',
