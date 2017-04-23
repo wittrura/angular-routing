@@ -18,8 +18,12 @@ import { CrisisService } from './crisis.service';
         </a>
       </li>
     </ul>
+    <router-outlet></router-outlet>
   `,
   styles: [`
+    a:link {
+      text-decoration: none;
+    },
     .selected {
       background-color: #CFD8DC !important;
       color: white;
@@ -28,7 +32,7 @@ import { CrisisService } from './crisis.service';
       margin: 0 0 2em 0;
       list-style-type: none;
       padding: 0;
-      width: 15em;
+      width: 20em;
     }
     .crises li {
       cursor: pointer;

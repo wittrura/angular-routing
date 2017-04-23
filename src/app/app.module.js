@@ -27,8 +27,8 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
-            app_routing_module_1.AppRoutingModule,
             crisis_center_module_1.CrisisCenterModule,
+            app_routing_module_1.AppRoutingModule,
             animations_1.BrowserAnimationsModule
         ],
         declarations: [
