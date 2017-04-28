@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
-import { Crisis } from './crisis';
+import { Crisis } from './crisis.service';
 import { CrisisService } from './crisis.service';
 
 @Component({
