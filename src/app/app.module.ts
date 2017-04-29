@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 import { ComposeMessageComponent } from './compose-message.component';
+import { AdminModule } from './admin/admin.module';
 
 import { DialogService } from './dialog.service';
 
@@ -23,13 +24,17 @@ import { DialogService } from './dialog.service';
     FormsModule,
     HeroesModule,
     CrisisCenterModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    AdminModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     ComposeMessageComponent
+  ],
+  providers: [
+    DialogService
   ],
   bootstrap: [ AppComponent ]
 })

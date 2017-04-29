@@ -16,6 +16,8 @@ var app_routing_module_1 = require("./app-routing.module");
 var heroes_module_1 = require("./heroes/heroes.module");
 var crisis_center_module_1 = require("./crisis-center/crisis-center.module");
 var compose_message_component_1 = require("./compose-message.component");
+var admin_module_1 = require("./admin/admin.module");
+var dialog_service_1 = require("./dialog.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,13 +31,17 @@ AppModule = __decorate([
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
             crisis_center_module_1.CrisisCenterModule,
-            app_routing_module_1.AppRoutingModule,
-            animations_1.BrowserAnimationsModule
+            admin_module_1.AdminModule,
+            animations_1.BrowserAnimationsModule,
+            app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
             not_found_component_1.PageNotFoundComponent,
             compose_message_component_1.ComposeMessageComponent
+        ],
+        providers: [
+            dialog_service_1.DialogService
         ],
         bootstrap: [app_component_1.AppComponent]
     })
