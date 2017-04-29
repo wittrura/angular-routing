@@ -8,6 +8,7 @@ import { ManageHeroesComponent }    from './manage-heroes.component';
 import { AdminRoutingModule }       from './admin-routing.module';
 
 import { AuthGuard } from '../auth-guard.service';
+import { AuthService } from '../auth.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,10 @@ import { AuthGuard } from '../auth-guard.service';
     ManageCrisesComponent,
     ManageHeroesComponent
   ],
-  providers: [AuthGuard]
+  providers: [
+    AuthGuard,
+    AuthService
+  ]
 })
 
 export class AdminModule {}
