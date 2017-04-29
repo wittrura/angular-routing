@@ -12,6 +12,7 @@ var admin_dashboard_component_1 = require("./admin-dashboard.component");
 var manage_crises_component_1 = require("./manage-crises.component");
 var manage_heroes_component_1 = require("./manage-heroes.component");
 var admin_routing_module_1 = require("./admin-routing.module");
+var auth_guard_service_1 = require("../auth-guard.service");
 var AdminModule = (function () {
     function AdminModule() {
     }
@@ -28,7 +29,8 @@ AdminModule = __decorate([
             admin_dashboard_component_1.AdminDashboardComponent,
             manage_crises_component_1.ManageCrisesComponent,
             manage_heroes_component_1.ManageHeroesComponent
-        ]
+        ],
+        providers: [auth_guard_service_1.AuthGuard]
     })
 ], AdminModule);
 exports.AdminModule = AdminModule;
