@@ -20,6 +20,7 @@ var adminRoutes = [
         children: [
             {
                 path: '',
+                canActivateChild: [auth_guard_service_1.AuthGuard],
                 children: [
                     { path: 'crises', component: manage_crises_component_1.ManageCrisesComponent },
                     { path: 'heroes', component: manage_heroes_component_1.ManageHeroesComponent },
