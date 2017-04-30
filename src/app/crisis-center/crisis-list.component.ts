@@ -4,81 +4,24 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
-import { Crisis } from './crisis.service';
-import { CrisisService } from './crisis.service';
+import { Crisis, CrisisService } from './crisis.service';
 
 @Component({
   template: `
-    <ul class="crises">
-      <li *ngFor="let crisis of crises | async">
-        <a [routerLink] = "crisis.id"
-           [class.selected]="isSelected(crisis)">
-          <span class="badge">{{crisis.id}}</span>
-          {{crisis.name}}
-        </a>
+    <ul class="items">
+      <li *ngFor="let crisis of crises | async"
+      (click)="onSelect(crisis)"
+      [class.selected]="isSelected(crisis)">
+        <span class="badge">{{crisis.id}}</span>
+        {{crisis.name}}
       </li>
     </ul>
     <router-outlet></router-outlet>
-  `,
-  styles: [`
-    a:link {
-      text-decoration: none;
-    },
-    .selected {
-      background-color: #CFD8DC !important;
-      color: white;
-    }
-    .crises {
-      margin: 0 0 2em 0;
-      list-style-type: none;
-      padding: 0;
-      width: 20em;
-    }
-    .crises li {
-      cursor: pointer;
-      position: relative;
-      left: 0;
-      background-color: #EEE;
-      margin: .5em;
-      padding: .3em 0;
-      height: 1.6em;
-      border-radius: 4px;
-    }
-    .crises li.selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-    .crises li:hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .1em;
-    }
-    .crises .text {
-      position: relative;
-      top: -3px;
-    }
-    .crises .badge {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #607D8B;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 1.8em;
-      margin-right: .8em;
-      border-radius: 4px 0 0 4px;
-    }
-  `],
-  providers: [CrisisService]
+  `
 })
 export class CrisisListComponent implements OnInit {
-  // title = 'Tour of Crises';
   crises: Observable<Crisis[]>;
-  // selectedCrisis: Crisis;
-  private selectedId: number;
+  selectedId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -86,12 +29,7 @@ export class CrisisListComponent implements OnInit {
     private service: CrisisService
   ) { }
 
-  // getCrises(): void {
-  //   this.crisisService.getCrises().then(crises => this.crises = crises);
-  // }
-
   ngOnInit(): void {
-    // this.getCrises();
     this.crises = this.route.params
       .switchMap((params: Params) => {
         this.selectedId = +params['id'];

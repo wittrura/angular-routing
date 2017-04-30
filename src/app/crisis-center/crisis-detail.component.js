@@ -12,13 +12,14 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 require("rxjs/add/operator/switchMap");
 var animations_1 = require("../animations");
-var crisis_service_1 = require("./crisis.service");
+// import { CrisisService } from './crisis.service';
 var dialog_service_1 = require("../dialog.service");
 var CrisisDetailComponent = (function () {
-    function CrisisDetailComponent(route, router, service, dialogService) {
+    function CrisisDetailComponent(route, router, 
+        // private service: CrisisService,
+        dialogService) {
         this.route = route;
         this.router = router;
-        this.service = service;
         this.dialogService = dialogService;
         this.routeAnimation = true;
         this.display = 'block';
@@ -26,12 +27,17 @@ var CrisisDetailComponent = (function () {
     }
     CrisisDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params
-            .switchMap(function (params) { return _this.service.getCrisis(+params['id']); })
-            .subscribe(function (crisis) { return _this.crisis = crisis; });
+        this.route.data.subscribe(function (data) {
+            _this.editName = data.crisis.name;
+            _this.crisis = data.crisis;
+        });
     };
     CrisisDetailComponent.prototype.gotoCrises = function () {
         var crisisId = this.crisis ? this.crisis.id : null;
+        // Pass along the crisis id if available
+        // so that the CrisisListComponent can select that crisis.
+        // Add a totally useless `foo` parameter for kicks.
+        // Relative navigation back to the crises
         this.router.navigate(['../', { id: crisisId, foo: 'foo' }, { relativeTo: this.route }]);
     };
     CrisisDetailComponent.prototype.cancel = function () {
@@ -66,13 +72,13 @@ __decorate([
 ], CrisisDetailComponent.prototype, "position", void 0);
 CrisisDetailComponent = __decorate([
     core_1.Component({
-        selector: 'crisis-detail',
-        animations: [animations_1.slideInDownAnimation],
-        template: "\n    <div *ngIf=\"crisis\">\n      <h2>{{crisis.name}} details!</h2>\n      <div>\n        <label>id: </label>{{crisis.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"crisis.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n    <button (click)=\"gotoCrises()\">Back</button>\n  "
+        // selector: 'crisis-detail',
+        template: "\n    <div *ngIf=\"crisis\">\n      <h3>\"{{ editName }}\"</h3>\n      <div>\n        <label>id: </label>{{ crisis.id }}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"editName\" placeholder=\"name\"/>\n      </div>\n      <p>\n        <button (click)=\"save()\">Save</button>\n        <button (click)=\"cancel()\">Cancel</button>\n      </p>\n    </div>\n  ",
+        styles: ['input {width: 20em}'],
+        animations: [animations_1.slideInDownAnimation]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         router_1.Router,
-        crisis_service_1.CrisisService,
         dialog_service_1.DialogService])
 ], CrisisDetailComponent);
 exports.CrisisDetailComponent = CrisisDetailComponent;

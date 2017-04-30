@@ -12,6 +12,7 @@ var crisis_list_component_1 = require("./crisis-list.component");
 var crisis_center_component_1 = require("./crisis-center.component");
 var crisis_detail_component_1 = require("./crisis-detail.component");
 var can_deactivate_guard_service_1 = require("../can-deactivate-guard.service");
+var crisis_detail_resolver_service_1 = require("./crisis-detail-resolver.service");
 var crisisCenterRoutes = [
     {
         path: '',
@@ -29,7 +30,10 @@ var crisisCenterRoutes = [
                     {
                         path: ':id',
                         component: crisis_detail_component_1.CrisisDetailComponent,
-                        canDeactivate: [can_deactivate_guard_service_1.CanDeactivateGuard]
+                        canDeactivate: [can_deactivate_guard_service_1.CanDeactivateGuard],
+                        resolve: {
+                            crisis: crisis_detail_resolver_service_1.CrisisDetailResolver
+                        }
                     },
                     {
                         path: '',
@@ -52,6 +56,9 @@ CrisisCenterRoutingModule = __decorate([
         ],
         exports: [
             router_1.RouterModule
+        ],
+        providers: [
+            crisis_detail_resolver_service_1.CrisisDetailResolver
         ]
     })
 ], CrisisCenterRoutingModule);
