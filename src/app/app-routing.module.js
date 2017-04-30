@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var not_found_component_1 = require("./not-found.component");
 var compose_message_component_1 = require("./compose-message.component");
+var can_deactivate_guard_service_1 = require("./can-deactivate-guard.service");
 var appRoutes = [
     { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
     { path: '', redirectTo: '/heroes', pathMatch: 'full' },
@@ -26,6 +27,9 @@ AppRoutingModule = __decorate([
         ],
         exports: [
             router_1.RouterModule
+        ],
+        providers: [
+            can_deactivate_guard_service_1.CanDeactivateGuard
         ]
     })
 ], AppRoutingModule);

@@ -13,11 +13,13 @@ var router_1 = require("@angular/router");
 require("rxjs/add/operator/switchMap");
 var animations_1 = require("../animations");
 var crisis_service_1 = require("./crisis.service");
+var dialog_service_1 = require("../dialog.service");
 var CrisisDetailComponent = (function () {
-    function CrisisDetailComponent(route, router, service) {
+    function CrisisDetailComponent(route, router, service, dialogService) {
         this.route = route;
         this.router = router;
         this.service = service;
+        this.dialogService = dialogService;
         this.routeAnimation = true;
         this.display = 'block';
         this.position = 'absolute';
@@ -28,9 +30,25 @@ var CrisisDetailComponent = (function () {
             .switchMap(function (params) { return _this.service.getCrisis(+params['id']); })
             .subscribe(function (crisis) { return _this.crisis = crisis; });
     };
-    CrisisDetailComponent.prototype.gotoCrisises = function () {
+    CrisisDetailComponent.prototype.gotoCrises = function () {
         var crisisId = this.crisis ? this.crisis.id : null;
         this.router.navigate(['../', { id: crisisId, foo: 'foo' }, { relativeTo: this.route }]);
+    };
+    CrisisDetailComponent.prototype.cancel = function () {
+        this.gotoCrises();
+    };
+    CrisisDetailComponent.prototype.save = function () {
+        this.crisis.name = this.editName;
+        this.gotoCrises();
+    };
+    CrisisDetailComponent.prototype.canDeactivate = function () {
+        // allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+        if (!this.crisis || this.crisis.name === this.editName) {
+            return true;
+        }
+        // otherwise ask the user with the dialog service and return its Promise
+        // which resolves to true or false when the user decides
+        return this.dialogService.confirm('Discard changes?');
     };
     return CrisisDetailComponent;
 }());
@@ -50,11 +68,12 @@ CrisisDetailComponent = __decorate([
     core_1.Component({
         selector: 'crisis-detail',
         animations: [animations_1.slideInDownAnimation],
-        template: "\n    <div *ngIf=\"crisis\">\n      <h2>{{crisis.name}} details!</h2>\n      <div>\n        <label>id: </label>{{crisis.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"crisis.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n    <button (click)=\"gotoCrisises()\">Back</button>\n  "
+        template: "\n    <div *ngIf=\"crisis\">\n      <h2>{{crisis.name}} details!</h2>\n      <div>\n        <label>id: </label>{{crisis.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"crisis.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n    <button (click)=\"gotoCrises()\">Back</button>\n  "
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         router_1.Router,
-        crisis_service_1.CrisisService])
+        crisis_service_1.CrisisService,
+        dialog_service_1.DialogService])
 ], CrisisDetailComponent);
 exports.CrisisDetailComponent = CrisisDetailComponent;
 /*

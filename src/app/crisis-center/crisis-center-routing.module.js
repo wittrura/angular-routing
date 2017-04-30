@@ -11,7 +11,13 @@ var crisis_center_home_component_1 = require("./crisis-center-home.component");
 var crisis_list_component_1 = require("./crisis-list.component");
 var crisis_center_component_1 = require("./crisis-center.component");
 var crisis_detail_component_1 = require("./crisis-detail.component");
+var can_deactivate_guard_service_1 = require("../can-deactivate-guard.service");
 var crisisCenterRoutes = [
+    {
+        path: '',
+        redirectTo: '/crisis-center',
+        pathMatch: 'full'
+    },
     {
         path: 'crisis-center',
         component: crisis_center_component_1.CrisisCenterComponent,
@@ -22,7 +28,8 @@ var crisisCenterRoutes = [
                 children: [
                     {
                         path: ':id',
-                        component: crisis_detail_component_1.CrisisDetailComponent
+                        component: crisis_detail_component_1.CrisisDetailComponent,
+                        canDeactivate: [can_deactivate_guard_service_1.CanDeactivateGuard]
                     },
                     {
                         path: '',

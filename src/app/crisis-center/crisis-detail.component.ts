@@ -1,12 +1,10 @@
 import { Component, HostBinding } from '@angular/core';
-
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-
 import { slideInDownAnimation } from '../animations';
 
 import { CrisisService } from './crisis.service';
-
+import { DialogService } from '../dialog.service'
 import { Crisis } from './crisis.service';
 
 @Component({
@@ -23,7 +21,7 @@ import { Crisis } from './crisis.service';
         <input [(ngModel)]="crisis.name" placeholder="name"/>
       </div>
     </div>
-    <button (click)="gotoCrisises()">Back</button>
+    <button (click)="gotoCrises()">Back</button>
   `
 })
 export class CrisisDetailComponent {
@@ -32,11 +30,13 @@ export class CrisisDetailComponent {
   @HostBinding('style.position')  position = 'absolute';
 
   crisis: Crisis;
+  editName: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: CrisisService
+    private service: CrisisService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -45,9 +45,28 @@ export class CrisisDetailComponent {
       .subscribe((crisis: Crisis) => this.crisis = crisis);
     }
 
-  gotoCrisises() {
+  gotoCrises() {
     let crisisId = this.crisis ? this.crisis.id : null;
     this.router.navigate(['../', {id: crisisId, foo: 'foo'}, {relativeTo: this.route}]);
+  }
+
+  cancel() {
+    this.gotoCrises();
+  }
+
+  save() {
+    this.crisis.name = this.editName;
+    this.gotoCrises();
+  }
+
+  canDeactivate(): Promise<boolean> | boolean {
+    // allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+    if (!this.crisis || this.crisis.name === this.editName) {
+      return true;
+    }
+    // otherwise ask the user with the dialog service and return its Promise
+    // which resolves to true or false when the user decides
+    return this.dialogService.confirm('Discard changes?');
   }
 }
 

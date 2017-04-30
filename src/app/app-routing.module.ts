@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PageNotFoundComponent } from './not-found.component';
 import { ComposeMessageComponent } from './compose-message.component';
+import { CanDeactivateGuard } from './can-deactivate-guard.service';
 
 const appRoutes: Routes = [
     { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' },
@@ -16,6 +17,9 @@ const appRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    CanDeactivateGuard
   ]
 })
 
