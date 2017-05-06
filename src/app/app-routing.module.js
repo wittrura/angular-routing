@@ -12,10 +12,16 @@ var compose_message_component_1 = require("./compose-message.component");
 var can_deactivate_guard_service_1 = require("./can-deactivate-guard.service");
 var auth_guard_service_1 = require("./auth-guard.service");
 var appRoutes = [
-    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
+    { path: 'compose',
+        component: compose_message_component_1.ComposeMessageComponent,
+        outlet: 'popup' },
     { path: 'admin',
         loadChildren: 'app/admin/admin.module#AdminModule',
-        canLoad: [auth_guard_service_1.AuthGuard] },
+        canLoad: [auth_guard_service_1.AuthGuard]
+    },
+    { path: 'crisis-center',
+        loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule'
+    },
     { path: '', redirectTo: '/heroes', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent }
 ];
@@ -27,7 +33,7 @@ var AppRoutingModule = (function () {
 AppRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot(appRoutes)
+            router_1.RouterModule.forRoot(appRoutes, { preloadingStrategy: router_1.PreloadAllModules })
         ],
         exports: [
             router_1.RouterModule

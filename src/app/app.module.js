@@ -17,7 +17,7 @@ var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module");
 var heroes_module_1 = require("./heroes/heroes.module");
-var crisis_center_module_1 = require("./crisis-center/crisis-center.module");
+// import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 var compose_message_component_1 = require("./compose-message.component");
 var login_routing_module_1 = require("./login-routing.module");
 var login_component_1 = require("./login.component");
@@ -38,7 +38,7 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
-            crisis_center_module_1.CrisisCenterModule,
+            // CrisisCenterModule,
             // AdminModule,
             login_routing_module_1.LoginRoutingModule,
             animations_1.BrowserAnimationsModule,

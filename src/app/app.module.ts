@@ -10,7 +10,7 @@ import { AppComponent }  from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HeroesModule } from './heroes/heroes.module';
-import { CrisisCenterModule } from './crisis-center/crisis-center.module';
+// import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 
 import { ComposeMessageComponent } from './compose-message.component';
 import { LoginRoutingModule } from './login-routing.module';
@@ -27,7 +27,7 @@ import { DialogService } from './dialog.service';
     BrowserModule,
     FormsModule,
     HeroesModule,
-    CrisisCenterModule,
+    // CrisisCenterModule,
     // AdminModule,
     LoginRoutingModule,
     BrowserAnimationsModule,

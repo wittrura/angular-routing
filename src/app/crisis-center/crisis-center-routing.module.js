@@ -16,11 +16,6 @@ var crisis_detail_resolver_service_1 = require("./crisis-detail-resolver.service
 var crisisCenterRoutes = [
     {
         path: '',
-        redirectTo: '/crisis-center',
-        pathMatch: 'full'
-    },
-    {
-        path: 'crisis-center',
         component: crisis_center_component_1.CrisisCenterComponent,
         children: [
             {
