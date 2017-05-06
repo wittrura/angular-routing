@@ -23,6 +23,10 @@ var AuthGuard = (function () {
     AuthGuard.prototype.canActivateChild = function (route, state) {
         return this.canActivate(route, state);
     };
+    AuthGuard.prototype.canLoad = function (route) {
+        var url = "/" + route.path;
+        return this.checkLogin(url);
+    };
     AuthGuard.prototype.checkLogin = function (url) {
         if (this.authService.isLoggedIn) {
             return true;

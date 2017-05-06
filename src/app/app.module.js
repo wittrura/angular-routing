@@ -22,7 +22,7 @@ var compose_message_component_1 = require("./compose-message.component");
 var login_routing_module_1 = require("./login-routing.module");
 var login_component_1 = require("./login.component");
 var not_found_component_1 = require("./not-found.component");
-var admin_module_1 = require("./admin/admin.module");
+// import { AdminModule } from './admin/admin.module';
 var dialog_service_1 = require("./dialog.service");
 var AppModule = (function () {
     // diagnostic only: insepct router configuration
@@ -39,7 +39,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             heroes_module_1.HeroesModule,
             crisis_center_module_1.CrisisCenterModule,
-            admin_module_1.AdminModule,
+            // AdminModule,
             login_routing_module_1.LoginRoutingModule,
             animations_1.BrowserAnimationsModule,
             app_routing_module_1.AppRoutingModule
