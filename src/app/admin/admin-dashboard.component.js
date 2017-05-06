@@ -5,16 +5,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+require("rxjs/add/operator/map");
 var AdminDashboardComponent = (function () {
-    function AdminDashboardComponent() {
+    function AdminDashboardComponent(route) {
+        this.route = route;
     }
+    AdminDashboardComponent.prototype.ngOnInit = function () {
+        // capture the session ID if available
+        this.sessionId = this.route.queryParams.map(function (params) { return params['session_id'] || 'None'; });
+        // capture the fragment if available
+        this.token = this.route.fragment.map(function (fragment) { return fragment || 'None'; });
+    };
     return AdminDashboardComponent;
 }());
 AdminDashboardComponent = __decorate([
     core_1.Component({
-        template: "\n    <p>Dashboard</p>\n  "
-    })
+        template: "\n    <p>Dashboard</p>\n    <p>Session ID: {{ sessionId | async }}</p>\n    <a id=\"anchor\"></a>\n    <p>Token: {{ token | async }}</p>\n  "
+    }),
+    __metadata("design:paramtypes", [router_1.ActivatedRoute])
 ], AdminDashboardComponent);
 exports.AdminDashboardComponent = AdminDashboardComponent;
 //# sourceMappingURL=admin-dashboard.component.js.map

@@ -28,9 +28,14 @@ var LoginComponent = (function () {
             if (_this.authService.isLoggedIn) {
                 // Get the redirect URL from our auth service
                 // If no redirect has been set, use the default
-                var redirect = _this.authService.redirectUrl ? _this.authService.redirectUrl : '/crisis-center/admin';
+                var redirect = _this.authService.redirectUrl ? _this.authService.redirectUrl : '/admin';
+                // set our navigation extras object that passes on our global query params and fragment
+                var navigationExtras = {
+                    preserveQueryParams: true,
+                    preserveFragment: true
+                };
                 // Redirect the user
-                _this.router.navigate([redirect]);
+                _this.router.navigate([redirect], navigationExtras);
             }
         });
     };

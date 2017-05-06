@@ -29,8 +29,15 @@ var AuthGuard = (function () {
         }
         // store the attemped URL for redirecting
         this.authService.redirectUrl = url;
+        // create a dummy session id
+        var sessionId = 123456789;
+        // set our navigation extras object that contains our global query params and fragment
+        var navigationExtras = {
+            queryParams: { 'session_id': sessionId },
+            fragment: 'anchor'
+        };
         // navigate to the login page with extras
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], navigationExtras);
         return false;
     };
     return AuthGuard;
