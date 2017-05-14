@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 require("rxjs/add/operator/map");
+var selective_preloading_strategy_1 = require("../selective-preloading-strategy");
 var AdminDashboardComponent = (function () {
-    function AdminDashboardComponent(route) {
+    function AdminDashboardComponent(route, preloadStrategy) {
         this.route = route;
+        this.modules = preloadStrategy.preloadedModules;
     }
     AdminDashboardComponent.prototype.ngOnInit = function () {
         // capture the session ID if available
@@ -25,9 +27,9 @@ var AdminDashboardComponent = (function () {
 }());
 AdminDashboardComponent = __decorate([
     core_1.Component({
-        template: "\n    <p>Dashboard</p>\n    <p>Session ID: {{ sessionId | async }}</p>\n    <a id=\"anchor\"></a>\n    <p>Token: {{ token | async }}</p>\n  "
+        template: "\n    <p>Dashboard</p>\n    <p>Session ID: {{ sessionId | async }}</p>\n    <a id=\"anchor\"></a>\n    <p>Token: {{ token | async }}</p>\n\n    Preloaded Modules\n    <ul>\n      <li *ngFor=\"let module of modules\">{{ module }}</li>\n    </ul>\n  "
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, selective_preloading_strategy_1.SelectivePreloadingStragey])
 ], AdminDashboardComponent);
 exports.AdminDashboardComponent = AdminDashboardComponent;
 //# sourceMappingURL=admin-dashboard.component.js.map

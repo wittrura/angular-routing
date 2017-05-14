@@ -11,6 +11,7 @@ var not_found_component_1 = require("./not-found.component");
 var compose_message_component_1 = require("./compose-message.component");
 var can_deactivate_guard_service_1 = require("./can-deactivate-guard.service");
 var auth_guard_service_1 = require("./auth-guard.service");
+var selective_preloading_strategy_1 = require("./selective-preloading-strategy");
 var appRoutes = [
     { path: 'compose',
         component: compose_message_component_1.ComposeMessageComponent,
@@ -20,7 +21,8 @@ var appRoutes = [
         canLoad: [auth_guard_service_1.AuthGuard]
     },
     { path: 'crisis-center',
-        loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule'
+        loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
+        data: { preload: true }
     },
     { path: '', redirectTo: '/heroes', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent }
@@ -33,13 +35,14 @@ var AppRoutingModule = (function () {
 AppRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot(appRoutes, { preloadingStrategy: router_1.PreloadAllModules })
+            router_1.RouterModule.forRoot(appRoutes, { preloadingStrategy: selective_preloading_strategy_1.SelectivePreloadingStragey })
         ],
         exports: [
             router_1.RouterModule
         ],
         providers: [
-            can_deactivate_guard_service_1.CanDeactivateGuard
+            can_deactivate_guard_service_1.CanDeactivateGuard,
+            selective_preloading_strategy_1.SelectivePreloadingStragey
         ]
     })
 ], AppRoutingModule);
