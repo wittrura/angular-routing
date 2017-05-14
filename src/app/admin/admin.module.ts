@@ -7,9 +7,6 @@ import { ManageCrisesComponent }    from './manage-crises.component';
 import { ManageHeroesComponent }    from './manage-heroes.component';
 import { AdminRoutingModule }       from './admin-routing.module';
 
-import { AuthGuard } from '../auth-guard.service';
-import { AuthService } from '../auth.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -22,8 +19,6 @@ import { AuthService } from '../auth.service';
     ManageHeroesComponent
   ],
   providers: [
-    AuthGuard,
-    AuthService
   ]
 })
 
